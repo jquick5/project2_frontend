@@ -1,0 +1,17 @@
+<div class="row p-2">
+  <div class="col-xs-12">
+    <button class="btn btn-success rounded" (click)="onNew()">
+      New Recipe
+    </button>
+  </div>
+</div>
+<hr />
+<div class="row p-2">
+  <div class="col-xs-12">
+    <app-recipe-item
+      *ngFor="let r of recipes; let i = index"
+      [recipe]="r"
+      [index]="i"
+    ></app-recipe-item>
+  </div>
+</div>

@@ -1,0 +1,116 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-xs-12">
+          <button
+            type="submit"
+            class="btn btn-success rounded"
+            [disabled]="!recipeForm.valid"
+          >
+            Save
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger rounded"
+            (click)="onCancel()"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              class="form-control"
+              formControlName="name"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="category">Category</label>
+            <input
+              type="text"
+              id="category"
+              class="form-control"
+              formControlName="category"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="description">Description</label>
+            <input
+              type="text"
+              id="description"
+              class="form-control"
+              formControlName="description"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="prepMethod">Directions</label>
+            <textarea
+              type="text"
+              id="prepMethod"
+              class="form-control"
+              formControlName="prepMethod"
+              rows="4"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="imagePath">Image URL</label>
+            <input
+              type="text"
+              id="imagePath"
+              class="form-control"
+              formControlName="imagePath"
+              #imagePath
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 mt-2">
+          <img
+            [src]="imagePath.value"
+            class="img-fluid"
+            style="max-height: 50px"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="ingredients">Ingredients</label>
+            <textarea
+              type="text"
+              id="ingredients"
+              class="form-control"
+              formControlName="ingredients"
+              rows="4"
+              placeholder="Please enter ingredient followed by a comma and a space"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

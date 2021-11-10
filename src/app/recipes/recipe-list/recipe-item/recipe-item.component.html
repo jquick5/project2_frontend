@@ -1,0 +1,20 @@
+<div class="card rounded shadow p-2">
+  <a
+    style="cursor: pointer"
+    class="list-group-item clearfix m-2"
+    [routerLink]="[index]"
+    routerLinkActive="active"
+  >
+    <div class="float-start">
+      <h3 class="list-group-item-heading">{{ recipe.name }}</h3>
+      <p class="list-group-item-text">{{ recipe.description }}</p>
+    </div>
+    <span class="float-end"
+      ><img
+        [src]="recipe.imagePath"
+        alt="{{ recipe.name }}"
+        class="img-fluid"
+        style="max-height: 100px"
+    /></span>
+  </a>
+</div>

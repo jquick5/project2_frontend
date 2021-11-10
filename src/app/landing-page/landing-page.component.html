@@ -1,0 +1,39 @@
+<h1 class="text-center">
+  <strong> Finding your favorite recipes just got a lot easier!</strong>
+</h1>
+<div class="d-flex justify-content-center">
+  <div class="card rounded shadow m-5" style="width: 50%">
+    <form class="p-5" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          formControlName="email"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          formControlName="password"
+          required
+        />
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!loginForm.valid"
+      >
+        Submit
+      </button>
+      <h4 class="mt-2">
+        Don't have an account?
+        <a class="text-decoration-none" routerLink="/register">Register here</a>
+      </h4>
+    </form>
+  </div>
+</div>

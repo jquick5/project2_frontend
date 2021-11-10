@@ -1,0 +1,11 @@
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border: 2px solid red;
+}
+.alert {
+  background-color: rgb(240, 132, 132);
+  border: 2px solid red;
+  border-radius: 10px;
+  max-width: 100%;
+  align-items: center;
+}

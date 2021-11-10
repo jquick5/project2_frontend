@@ -1,0 +1,72 @@
+<h1 class="text-center">
+  <strong> Finding your favorite recipes just got a lot easier!</strong>
+</h1>
+
+<div class="d-flex justify-content-center">
+  <div class="card rounded shadow m-5" style="width: 50%">
+    <form [formGroup]="registerForm" class="p-5" (ngSubmit)="onRegister()">
+      <div class="mb-3">
+        <label for="firstName" class="form-label">First Name</label>
+        <input
+          type="text"
+          id="firstName"
+          class="form-control"
+          formControlName="firstName"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="lastName" class="form-label">Last Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="lastName"
+          formControlName="lastName"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email Address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          formControlName="email"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          formControlName="password"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="password2" class="form-label">Confirm Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password2"
+          formControlName="password2"
+        />
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!registerForm.valid"
+      >
+        Submit
+      </button>
+      <h4 class="mt-2">
+        Have an account?
+        <a class="text-decoration-none" routerLink="/">Sign In</a>
+      </h4>
+      <h4
+        [ngStyle]="{ display: passwordsMatch ? 'none' : 'block' }"
+        class="text-center alert"
+      >
+        Passwords don't match
+      </h4>
+    </form>
+  </div>
+</div>
