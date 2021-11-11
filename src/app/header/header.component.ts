@@ -1,4 +1,10 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import {
+  Component,
+  OnChanges,
+  OnInit,
+  SimpleChange,
+  SimpleChanges,
+} from '@angular/core';
 import { AccountService } from '../account.service';
 import { LandingPageComponent } from '../landing-page/landing-page.component';
 
@@ -14,21 +20,15 @@ export class HeaderComponent implements OnInit, OnChanges {
   name: string = localStorage.getItem('firstName');
 
   ngOnInit(): void {
-    if (this.aService.loggedIn) {
-      this.loggedIn = localStorage.getItem('loggedIn');
-    }
+    this.loggedIn = localStorage.getItem('loggedIn');
   }
 
-  ngOnChanges() {
-    if (this.aService.loggedIn) {
-      this.loggedIn = localStorage.getItem('loggedIn');
-    }
-
-    console.log('changes');
+  ngOnChanges(change: SimpleChanges) {
+    change.loggedIn;
   }
 
   onLogout() {
+    localStorage.setItem('loggedIn', 'false');
     this.aService.logout();
-    this.loggedIn = localStorage.getItem('loggrdIn');
   }
 }

@@ -19,13 +19,22 @@
       id="navbarNavDropdown"
     >
       <ul class="navbar-nav ms-auto">
-        <li *ngIf="loggedIn === 'true'" class="nav-item">
+        <li *ngIf="loggedIn === 'true'; else showThis" class="nav-item">
           <a class="nav-link">
             <h4>
               <strong>Welcome, {{ name }}</strong>
             </h4>
           </a>
         </li>
+        <ng-template #showThis>
+          <li class="nav-item">
+            <a class="nav-link">
+              <h4>
+                <strong>Register</strong>
+              </h4>
+            </a>
+          </li>
+        </ng-template>
         <li class="nav-item" routerLinkActive="active">
           <a type="button" class="nav-link" routerLink="/" (click)="onLogout()">
             <h4>

@@ -11,16 +11,10 @@ import { AccountService } from '../account.service';
 })
 export class LandingPageComponent implements OnInit {
   loginForm: FormGroup;
-  loggedIn: boolean = localStorage.getItem('userId') ? true : false;
 
-  constructor(
-    private http: HttpClient,
-    private aService: AccountService,
-    private router: Router
-  ) {}
+  constructor(private aService: AccountService, private router: Router) {}
 
   ngOnInit(): void {
-    localStorage.setItem('loggedIn', 'false');
     this.loginForm = new FormGroup({
       email: new FormControl(null, Validators.required),
       password: new FormControl(null, Validators.required),
@@ -32,11 +26,9 @@ export class LandingPageComponent implements OnInit {
       .login(this.loginForm.value['email'], this.loginForm.value['password'])
       .subscribe((data) => {
         if (data) {
-          this.loggedIn = true;
           this.aService
             .getAccount(this.loginForm.value['email'])
             .subscribe((userData) => {
-              console.log('Logged in: ' + this.loggedIn);
               localStorage.setItem('userId', userData[0].id);
               localStorage.setItem('firstName', userData[0].firstName);
               localStorage.setItem('lastName', userData[0].lastName);
@@ -46,7 +38,5 @@ export class LandingPageComponent implements OnInit {
             });
         }
       });
-
-    console.log('login clicked');
   }
 }

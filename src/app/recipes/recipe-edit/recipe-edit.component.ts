@@ -40,23 +40,11 @@ export class RecipeEditComponent implements OnInit, OnChanges {
     this.router
       .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
       .then(() => {
-        this.router.navigate(['Your actualComponent']);
+        this.router.navigate(['/recipes']);
       });
   }
 
   onSubmit() {
-    const newRecipe = new Recipe(
-      0,
-      this.recipeForm.value['name'],
-      this.recipeForm.value['category'],
-      0,
-      this.recipeForm.value['prepMethod'].trim(),
-      this.recipeForm.value['description'],
-      this.recipeForm.value['imagePath'],
-      this.recipeForm.value['ingredients'].split(', '),
-      parseInt(this.userId)
-    );
-
     if (this.editMode) {
       let rId = this.recipes[this.id].recipeId;
       let ownerId = this.recipes[this.id].userId;
@@ -71,15 +59,30 @@ export class RecipeEditComponent implements OnInit, OnChanges {
         this.recipeForm.value['ingredients'].split(', '),
         ownerId
       );
-      console.log(newRecipe);
+
       this.rService.updateRecipe(rId, updateRecipe).subscribe((data) => {
         console.log(data);
+        this.router.navigate['/recipes'];
+        window.location.reload();
+      });
+    } else {
+      const newRecipe = new Recipe(
+        0,
+        this.recipeForm.value['name'],
+        this.recipeForm.value['category'],
+        0,
+        this.recipeForm.value['prepMethod'].trim(),
+        this.recipeForm.value['description'],
+        this.recipeForm.value['imagePath'],
+        this.recipeForm.value['ingredients'].split(', '),
+        parseInt(this.userId)
+      );
+      this.rService.addRecipe(newRecipe).subscribe((data) => {
+        console.log('Recipe added');
+        this.router.navigate['/recipes'];
+        window.location.reload();
       });
     }
-    console.log('called');
-    this.rService.addRecipe(newRecipe).subscribe((data) => {
-      console.log('Recipe added');
-    });
 
     this.onCancel();
   }
@@ -96,8 +99,6 @@ export class RecipeEditComponent implements OnInit, OnChanges {
     (<FormArray>this.recipeForm.get('ingredients')).removeAt(index);
   }
 
-  //*ngFor="let ingredientCtrl of controls; let i = index"
-
   private initForm() {
     let rId;
     let recipeName = '';
@@ -113,7 +114,6 @@ export class RecipeEditComponent implements OnInit, OnChanges {
       this.rService
         .getRecipe(this.recipes[this.id].recipeId)
         .subscribe((data) => {
-          console.log(data);
           rId = data.recipeId;
           recipeName = data.name;
           recipeImage = data.imagePath;

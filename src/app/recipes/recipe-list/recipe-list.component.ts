@@ -28,8 +28,6 @@ export class RecipeListComponent implements OnInit, OnDestroy, OnChanges {
 
     this.recipeService.getRecipes().subscribe((data) => {
       this.recipes = data;
-      console.log(data);
-      console.log(data[0].name);
     });
   }
 
@@ -37,7 +35,7 @@ export class RecipeListComponent implements OnInit, OnDestroy, OnChanges {
     this.router
       .navigateByUrl('/recipes', { skipLocationChange: true })
       .then(() => {
-        this.router.navigate(['/recipes']);
+        this.router.navigate(['/recipes', 'reload']);
       });
   }
   onNew() {

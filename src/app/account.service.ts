@@ -15,13 +15,12 @@ export class AccountService {
       'Content-Type': 'application/json',
     });
     let options = { headers: headers };
-    console.log('Service: ' + JSON.stringify(account));
+
     return this.http.post<Account>(
       'http://localhost:5500/api/registration',
       JSON.stringify(account),
       options
     );
-    // console.log('Service: ' + account);
   }
 
   login(email: string, password: string) {
@@ -37,8 +36,6 @@ export class AccountService {
       JSON.stringify(body),
       options
     );
-
-    // console.log('Service: ' + account);
   }
 
   logout() {
@@ -51,7 +48,7 @@ export class AccountService {
 
   getAccount(email: string) {
     return this.http.get<Account>(
-      `http://localhost:5500/api//accountsByEmail/${email}`
+      `http://localhost:5500/api/accountsByEmail/${email}`
     );
   }
 }

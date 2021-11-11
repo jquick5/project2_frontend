@@ -24,7 +24,7 @@ export class RecipeDetailComponent implements OnInit {
   ngOnInit(): void {
     this.rService.getRecipes().subscribe((data) => {
       this.recipes = data;
-      console.log(this.recipes);
+
       this.route.params.subscribe((params: Params) => {
         this.id = +params['id'];
         this.recipe = this.recipes[this.id];
@@ -44,8 +44,10 @@ export class RecipeDetailComponent implements OnInit {
   onDelete() {
     this.rService.deleteRecipe(this.recipeId).subscribe((data) => {
       console.log('Recipe Deleted');
-      this.rService.getRecipes().subscribe();
+      this.router.navigate(['/recipes']);
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
     });
-    this.router.navigate(['/recipes']);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { RecipeService } from './recipe.service';
 
 @Component({
@@ -7,8 +7,10 @@ import { RecipeService } from './recipe.service';
   styleUrls: ['./recipes.component.css'],
   providers: [RecipeService],
 })
-export class RecipesComponent implements OnInit {
+export class RecipesComponent implements OnInit, OnChanges {
   constructor() {}
+
+  ngOnChanges() {}
 
   ngOnInit(): void {}
 }

@@ -62,6 +62,7 @@ export class RecipeService {
 
   getRecipes() {
     //return this.recipes.slice();
+
     return this.http.get<Recipe[]>('http://localhost:5500/api/recipes');
   }
 

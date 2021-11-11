@@ -8,23 +8,48 @@ import { RecipesComponent } from './recipes/recipes.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 const appRoutes: Routes = [
-  { path: '', component: LandingPageComponent },
+  {
+    path: '',
+    component: LandingPageComponent,
+    runGuardsAndResolvers: 'always',
+  },
   { path: 'register', component: RegisterPageComponent },
   {
     path: 'recipes',
     component: RecipesComponent,
+    runGuardsAndResolvers: 'always',
     children: [
-      { path: '', component: RecipeStartComponent },
-      { path: 'new', component: RecipeEditComponent },
-      { path: ':id', component: RecipeDetailComponent },
-      { path: ':id/edit', component: RecipeEditComponent },
+      {
+        path: '',
+        component: RecipeStartComponent,
+        runGuardsAndResolvers: 'always',
+      },
+      {
+        path: 'new',
+        component: RecipeEditComponent,
+        runGuardsAndResolvers: 'always',
+      },
+      {
+        path: ':id',
+        component: RecipeDetailComponent,
+        runGuardsAndResolvers: 'always',
+      },
+      {
+        path: ':id/edit',
+        component: RecipeEditComponent,
+        runGuardsAndResolvers: 'always',
+      },
     ],
   },
-  { path: 'list', component: ShoppingListComponent },
+  {
+    path: 'list',
+    component: ShoppingListComponent,
+    runGuardsAndResolvers: 'always',
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes)],
+  imports: [RouterModule.forRoot(appRoutes, { onSameUrlNavigation: 'reload' })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
